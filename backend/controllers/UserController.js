@@ -138,3 +138,32 @@ export const getUserById = async (req, res) => {
         return
     }
 }
+
+export const starUser = async (req, res) => {
+    const { id } = req.params;
+    const reqUser = req.user;
+
+
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            res.status(404).json({ errors: ["Usuário não encontrado."] })
+            return
+        }
+
+        if (user.stars.includes(reqUser._id)) {
+            res.status(422).json({ errors: ["Você ja deu uma estrela."] })
+            return
+        }
+
+        user.stars.push(reqUser._id)
+
+        user.save()
+
+        res.status(200).json({ user: id, userId: reqUser._id, message: "A foto recebeu estrela!" })
+
+    } catch (error) {
+        res.status(404).json({ errors: ["Usuário não encontrado."] })
+    }
+
+};
