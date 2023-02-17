@@ -4,6 +4,7 @@ import path, { dirname } from "path"
 import dotenv from 'dotenv/config';
 import { router } from './routes/Router.js';
 import { fileURLToPath } from "url";
+import { db } from './config/db.js';
 
 const port = process.env.PORT;
 
@@ -22,6 +23,13 @@ app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 app.use("/uploads", express.static(path.join(__dirname, '/uploads')));
+
+// DB connection 
+
+db.on('error', console.log.bind(console, 'Error connection'));
+db.once('open', () => {
+    console.log('Connection db sucessfull')
+})
 
 // routes
 
