@@ -9,4 +9,4 @@ export const userRoutes = express();
 userRoutes.post('/register', userCreateValidation(), validate, register);
 userRoutes.post('/login', loginValidation(), validate, login);
 userRoutes.get("/profile",authGuard, getCurrentUser);
-userRoutes.get("/", authGuard, getAllUsers)
+userRoutes.get("/", getAllUsers)
