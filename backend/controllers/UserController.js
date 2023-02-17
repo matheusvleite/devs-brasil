@@ -76,3 +76,9 @@ export const getCurrentUser = async (req, res) => {
 
     res.status(200).json(user);
 }
+
+export const getAllUsers = async (req,res) => {
+    const users = await User.find({}).select("-password").sort([["createdAt", -1]]).exec();
+
+    return res.status(200).json(users);
+}
