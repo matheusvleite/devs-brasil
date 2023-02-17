@@ -42,3 +42,31 @@ export const register = async (req, res) => {
         token: generateToken(newUser._id)
     })
 };
+
+export const login = async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        const user = await User.findOne({ email })
+
+        if (!user) {
+            res.status(404).json({ errors: ["Usuário não encontrado."] })
+            return
+        }
+
+        if (!(await bcrypt.compare(password, user.password))) {
+            res.status(422).json({ errors: ["Senha inválida."] })
+            return
+        }
+
+        res.status(201).json({
+            _id: user._id,
+            profileImage: user.profileImage,
+            token: generateToken(user._id)
+        })
+    } catch (error) {
+        res.status(500).json({ errors: ["Erro interno do servidor."] })
+        return
+    }
+
+}
