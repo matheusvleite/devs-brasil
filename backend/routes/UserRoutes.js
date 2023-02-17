@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllUsers, getCurrentUser, login, register, update } from "../controllers/UserController.js";
+import { getAllUsers, getCurrentUser, getUserById, login, register, update } from "../controllers/UserController.js";
 import { authGuard } from "../middlewares/authGuard.js";
 import { validate } from "../middlewares/handleValidation.js";
 import { imageUpload } from "../middlewares/imageUpload.js";
@@ -12,3 +12,4 @@ userRoutes.post('/login', loginValidation(), validate, login);
 userRoutes.get("/profile", authGuard, getCurrentUser);
 userRoutes.put("/", authGuard, userUpdateValidate(), validate, imageUpload.single("profileImage"), update)
 userRoutes.get("/", getAllUsers)
+userRoutes.get("/:id", getUserById);

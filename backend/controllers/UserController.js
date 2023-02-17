@@ -77,7 +77,7 @@ export const getCurrentUser = async (req, res) => {
     res.status(200).json(user);
 }
 
-export const getAllUsers = async (req,res) => {
+export const getAllUsers = async (req, res) => {
     const users = await User.find({}).select("-password").sort([["createdAt", -1]]).exec();
 
     return res.status(200).json(users);
@@ -119,4 +119,22 @@ export const update = async (req, res) => {
     await user.save();
 
     res.status(200).json(user);
+}
+
+
+export const getUserById = async (req, res) => {
+    const { id } = req.params
+
+    try {
+        const user = await User.findById(mongoose.Types.ObjectId(id)).select("-password")
+
+        if (!user) {
+            res.status(404).json({ errors: ["Usuário não encontrado."] })
+            return
+        }
+        res.status(200).json(user);
+    } catch (error) {
+        res.status(404).json({ errors: ["Usuário não encontrado."] })
+        return
+    }
 }
