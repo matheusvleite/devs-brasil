@@ -4,10 +4,10 @@ const userSchema = new mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    profileImage: String,
+    profileImage: { type: String, default: "userdevprofile.png" },
     bio: String,
     stars: Array
-},{
+}, {
     timestamps: true
 });
 
