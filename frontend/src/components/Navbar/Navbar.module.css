@@ -1,0 +1,23 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.navbar span {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
+    margin-left: .5rem;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+}
