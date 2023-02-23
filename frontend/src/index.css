@@ -48,6 +48,25 @@ table {
     border-spacing: 0;
 }
 
+
+[data-theme='light'] {
+    --DEFAULT: #000;
+    --DEFAULT-BACKGROUND: #e7e7e7;
+    --LINEAR-LOGO: -webkit-linear-gradient(#039417, #333);
+}
+
+[data-theme='dark'] {
+    --DEFAULT: #ffffff;
+    --DEFAULT-BACKGROUND: #0f0f0f;
+    --LINEAR-LOGO: -webkit-linear-gradient(#039417, #ffffff);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
+    background-color: var(--DEFAULT-BACKGROUND);
+}
+
+.active {
+    font-size: 1.1rem;
+    font-weight: bold;
 }
