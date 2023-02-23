@@ -117,7 +117,7 @@ label span {
 }
 
 input {
-    color: var(--DEFAULT);
+    color: var(--PLACEHOLDER);
     border-radius: 2px;
     border: none;
     padding: 10px 8px;
