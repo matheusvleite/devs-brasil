@@ -1,0 +1,9 @@
+.signup {
+    width: 50%;
+    margin: 2rem auto;
+    border: 2px solid var(--BORDER);
+    background-color: var(--BG-FORM);
+    padding: 1.5rem 2rem;
+}
+
+

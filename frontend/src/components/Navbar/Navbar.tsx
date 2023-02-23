@@ -24,7 +24,7 @@ const Navbar = () => {
     return (
         <header>
             <nav className={styles.navbar}>
-                <Link to='/' className={styles.logo}>Devs Brasil</Link>
+                <Link to='/' className='logo'>Devs Brasil</Link>
                 <ul>
                     <li><NavLink to="/">Início</NavLink></li>
                     <li><NavLink to="/login">Entrar</NavLink></li>
