@@ -57,7 +57,8 @@ const SignUp = () => {
                     <span>Confirme a senha:</span>
                     <input type="password" placeholder='Confirme sua senha' value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)}/>
                 </label>
-                <input type="submit" value="Cadastrar" />
+                {loading && <input type="submit" value="Carregando..." disabled/> }
+                {!loading && <input type="submit" value="Cadastrar" /> }
             </form>
             <div className='bottom'>
             <p>Ja tem conta? <Link to='/login'>Clique aqui.</Link></p>
