@@ -1,6 +1,11 @@
 import React, { FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './SignUp.module.css';
+import { register, reset } from '../../slices/authSlice';
+import {useSelector, useDispatch} from 'react-redux';
+import { AppDispatch } from '../../store';
+import { RootState } from '../../interfaces/User';
+
 
 
 const SignUp = () => {
@@ -8,6 +13,10 @@ const SignUp = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
+    const dispatch = useDispatch<AppDispatch>();
+
+    const {loading, error} = useSelector((state: RootState) => state.auth)
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -20,8 +29,11 @@ const SignUp = () => {
         const data = {
             name,
             email,
-            password
+            password,
+            confirmPassword
         }
+
+        dispatch(register(data))
 
     }
 
