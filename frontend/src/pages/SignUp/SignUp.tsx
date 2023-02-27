@@ -1,10 +1,11 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './SignUp.module.css';
 import { register, reset } from '../../slices/authSlice';
 import {useSelector, useDispatch} from 'react-redux';
-import { AppDispatch } from '../../store';
-import { RootState } from '../../interfaces/User';
+import { AppDispatch, RootState } from '../../store';
+import Message from '../../components/Message/Message';
+import { resetComponentMessage } from '../../hooks/useResetMessage';
 
 
 
@@ -15,16 +16,11 @@ const SignUp = () => {
     const [confirmPassword, setConfirmPassword] = useState('');
 
     const dispatch = useDispatch<AppDispatch>();
-
-    const {loading, error} = useSelector((state: RootState) => state.auth)
+    const {loading, error, message} = useSelector((state: RootState) => state.auth)
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if(password != confirmPassword) {
-            alert('As senhas precisam ser iguais!')
-            return
-        }
 
         const data = {
             name,
@@ -35,7 +31,14 @@ const SignUp = () => {
 
         dispatch(register(data))
 
+        resetComponentMessage(dispatch)
+
     }
+
+    useEffect(() => {
+        dispatch(reset());
+    }, [dispatch]);
+
 
     return (
         <div className={styles.signup}>
@@ -60,6 +63,7 @@ const SignUp = () => {
                 {loading && <input type="submit" value="Carregando..." disabled/> }
                 {!loading && <input type="submit" value="Cadastrar" /> }
             </form>
+            {error && <Message type='error' message={message} />}
             <div className='bottom'>
             <p>Ja tem conta? <Link to='/login'>Clique aqui.</Link></p>
             </div>

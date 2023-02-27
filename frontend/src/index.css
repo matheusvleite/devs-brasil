@@ -168,3 +168,15 @@ input:disabled {
     color: var(--LINK);
 }
 
+.error {
+    background-color: rgba(248, 83, 83, 0.74);
+    border-radius: 8px;
+    margin-top: .7rem;
+    padding: .8rem;
+}
+
+.error p {
+    text-align: center;
+    color: #ffffff;
+}
+

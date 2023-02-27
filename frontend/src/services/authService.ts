@@ -1,9 +1,9 @@
 import axios from "axios";
-import { User } from "../interfaces/User";
+import { IRegisterUser } from "../interfaces/User";
 import { api } from "../utils/config";
 
 
-const register = async (data: User) => {
+const register = async (data: IRegisterUser) => {
   
     try {
         const res = await axios.post(api + '/users/register', data)
@@ -13,7 +13,7 @@ const register = async (data: User) => {
         if (res._id) {
             localStorage.setItem("user", JSON.stringify(res))
         }
-        return res;
+        return res.response.data;
     } catch (error) {
         console.log(error)
     }

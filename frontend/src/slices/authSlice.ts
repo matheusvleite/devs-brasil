@@ -1,31 +1,32 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { User } from '../interfaces/User';
+import { createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
+import { IRegisterUser } from '../interfaces/User';
 import authService from '../services/authService';
 
 const user = JSON.parse(localStorage.getItem("user")!);
 
 interface InitialState {
-    user: User,
-    error: string,
+    user: IRegisterUser | null,
+    error: boolean
     success: boolean,
-    loading: boolean
+    loading: boolean,
+    message: {}
 }
 
 const initialState: InitialState = {
-    user: user ? user : null,
-    error: '',
+    user: user,
+    error: false,
     success: false,
-    loading: false
+    loading: false,
+    message: {}
 };
 
 // Register an user and sign in
 
 export const register = createAsyncThunk("auth/register",
-    async (user: User, thunkAPI) => {
+    async (user: IRegisterUser, thunkAPI) => {
         const data = await authService.register(user)
 
         // check for errors
-
         if (data.errors) {
             return thunkAPI.rejectWithValue(data.errors[0])
         }
@@ -41,24 +42,24 @@ export const authSlice = createSlice({
     reducers: {
         reset: (state) => {
             state.loading = false;
-            state.error = '';
+            state.error = false;
             state.success = false;
         },
     },
     extraReducers: (builder) => {
         builder
-        .addCase(register.pending, (state) => {
+        .addCase(register.pending, (state: InitialState) => {
             state.loading = true;
-            state.error = ''
-        }).addCase(register.fulfilled, (state, action) => {
+        }).addCase(register.fulfilled, (state: InitialState, action: PayloadAction<IRegisterUser>) => {
             state.loading = false;
             state.success = true;
-            state.error = '';
+            state.error = false;
             state.user = action.payload;
-        }).addCase(register.rejected, (state, action) => {
+        }).addCase(register.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false;
-            state.error = action.error.message || 'Algo deu errado';
-            state.user = user;
+            state.error = true;
+            state.message = action.payload;
+            state.user = null;
         })
     }
 })
