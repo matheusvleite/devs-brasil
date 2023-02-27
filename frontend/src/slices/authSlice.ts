@@ -2,22 +2,22 @@ import { createSlice, createAsyncThunk, PayloadAction} from '@reduxjs/toolkit';
 import { IRegisterUser } from '../interfaces/User';
 import authService from '../services/authService';
 
-const user = JSON.parse(localStorage.getItem("user")!);
+const userAuth = JSON.parse(localStorage.getItem("user")!);
 
 interface InitialState {
     user: IRegisterUser | null,
     error: boolean
     success: boolean,
     loading: boolean,
-    message: {}
+    message: string
 }
 
 const initialState: InitialState = {
-    user: user,
+    user: userAuth || null,
     error: false,
     success: false,
     loading: false,
-    message: {}
+    message: ''
 };
 
 // Register an user and sign in
@@ -50,7 +50,7 @@ export const authSlice = createSlice({
         builder
         .addCase(register.pending, (state: InitialState) => {
             state.loading = true;
-        }).addCase(register.fulfilled, (state: InitialState, action: PayloadAction<IRegisterUser>) => {
+        }).addCase(register.fulfilled, (state: InitialState, action) => {
             state.loading = false;
             state.success = true;
             state.error = false;

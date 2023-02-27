@@ -20,11 +20,20 @@
     transition: .5s;
 }
 
+.navbar ul li a:hover {
+    font-size: 1.1rem;
+}
+
+.navbar ul li span {
+    color: var(--DEFAULT);
+    transition: .5s;
+}
+
+.navbar ul li span:hover {
+    font-size: 1.1rem;
+}
+
 .navbar ul li svg {
     font-size: 1.2rem;
     color: var(--DEFAULT);
-}
-
-.navbar ul li a:hover {
-    font-size: 1.1rem;
 }
