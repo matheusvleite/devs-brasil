@@ -3,11 +3,19 @@ import styles from './Navbar.module.css';
 import { BsLightbulbFill, BsLightbulbOffFill } from "react-icons/bs";
 import { useState } from 'react';
 import {useAuth} from '../../hooks/useAuth';
+import {useDispatch, useSelector} from 'react-redux';
+import { logout } from '../../slices/authSlice';
+import { AppDispatch } from '../../store';
 
 const Navbar = () => {
     const [theme, setTheme] = useState(false);
 
     const {auth} = useAuth();
+    const dispatch = useDispatch<AppDispatch>();
+
+    const handleLogout = () => {
+        dispatch(logout());
+    }
 
     const handleTheme = () => {
         const body = document.querySelector('body');
@@ -34,7 +42,7 @@ const Navbar = () => {
                         <>
                         <li><NavLink to="/profile">Perfil</NavLink></li>
                         <li><NavLink to="/editprofile">Editar Perfil</NavLink></li>
-                        <li><span>Sair</span></li>
+                        <li><span onClick={handleLogout} className={styles.logout}>Sair</span></li>
                         </>
                     ) : (
                     <>

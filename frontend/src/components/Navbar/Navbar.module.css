@@ -24,12 +24,13 @@
     font-size: 1.1rem;
 }
 
-.navbar ul li span {
+.logout {
     color: var(--DEFAULT);
     transition: .5s;
+    cursor: pointer;
 }
 
-.navbar ul li span:hover {
+.logout:hover {
     font-size: 1.1rem;
 }
 
