@@ -1,0 +1,26 @@
+.editProfile {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.editProfile h1 {
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--DEFAULT);
+}
+
+.editProfile img {
+    border-radius: 50%;
+    width: 30%;
+    border: 2px solid var(--BORDER);
+    margin-top: 1rem;
+}
+
+.editProfile form {
+    margin-top: 1rem;
+    background-color: var(--BG-FORM);
+    padding: 1rem;
+    border: 2px solid var(--BORDER);
+}

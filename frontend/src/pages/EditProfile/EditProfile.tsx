@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { upload } from "../../utils/config";
+import styles from './EditProfile.module.css';
 
 const EditProfile = () => {
   const dispath = useDispatch<AppDispatch>();
@@ -27,7 +28,7 @@ const EditProfile = () => {
   }
 
   return (
-    <div>
+    <div className={styles.editProfile}>
       <h1>Atualize seu perfil</h1>
       {user && (
         <>

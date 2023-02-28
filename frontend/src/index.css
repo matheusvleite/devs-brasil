@@ -114,6 +114,7 @@ label span {
     font-weight: bold;
     margin-bottom: .5rem;
     color: var(--SUBTITILE);
+    text-align: left;
 }
 
 input,
