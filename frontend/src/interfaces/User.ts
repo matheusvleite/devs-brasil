@@ -13,9 +13,9 @@ export interface ILogin {
 
 export interface IUser {
     _id: string
-    name: String,
-    email: String,
-    profileImage: String,
-    bio: String,
+    name: string,
+    email: string,
+    profileImage: string,
+    bio: string,
     stars: []
 }
