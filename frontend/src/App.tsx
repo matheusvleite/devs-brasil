@@ -4,6 +4,7 @@ import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import { useAuth } from './hooks/useAuth';
+import Profile from './pages/Profile/Profile';
 
 const App = () => {
 const {auth} = useAuth();
@@ -14,8 +15,9 @@ const {auth} = useAuth();
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
-          <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/' />} />
+          <Route path='/profile/:id' element={auth ? <Profile /> : <Navigate to='/login' />} />
+          <Route path='/login' element={!auth ? <Login /> : <Navigate to='/profile' />} />
+          <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/profile' />} />
         </Routes>
       </BrowserRouter>
     </div>

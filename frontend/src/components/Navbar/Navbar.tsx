@@ -5,13 +5,14 @@ import { useState } from 'react';
 import {useAuth} from '../../hooks/useAuth';
 import {useDispatch, useSelector} from 'react-redux';
 import { logout } from '../../slices/authSlice';
-import { AppDispatch } from '../../store';
+import { AppDispatch, RootState } from '../../store';
 
 const Navbar = () => {
     const [theme, setTheme] = useState(false);
 
     const {auth} = useAuth();
     const dispatch = useDispatch<AppDispatch>();
+    const {user} = useSelector((state: RootState) => state.auth)
 
     const handleLogout = () => {
         dispatch(logout());
@@ -40,7 +41,9 @@ const Navbar = () => {
                     <li><NavLink to="/">Início</NavLink></li>
                     {auth ? (
                         <>
-                        <li><NavLink to="/profile">Perfil</NavLink></li>
+                        {user && (
+                            <li><NavLink to={`/profile/${user._id}`}>Perfil</NavLink></li>
+                        )}
                         <li><NavLink to="/editprofile">Editar Perfil</NavLink></li>
                         <li><span onClick={handleLogout} className={styles.logout}>Sair</span></li>
                         </>
