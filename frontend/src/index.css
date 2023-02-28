@@ -116,7 +116,8 @@ label span {
     color: var(--SUBTITILE);
 }
 
-input {
+input,
+textarea {
     color: var(--PLACEHOLDER);
     border-radius: 2px;
     border: none;
@@ -126,7 +127,8 @@ input {
     background-color: var(--BG-INPUT);
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
     color: var(--PLACEHOLDER);
 }
 

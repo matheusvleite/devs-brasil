@@ -5,6 +5,7 @@ import Login from './pages/Login/Login';
 import SignUp from './pages/SignUp/SignUp';
 import { useAuth } from './hooks/useAuth';
 import Profile from './pages/Profile/Profile';
+import EditProfile from './pages/EditProfile/EditProfile';
 
 const App = () => {
 const {auth} = useAuth();
@@ -16,6 +17,7 @@ const {auth} = useAuth();
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/profile/:id' element={auth ? <Profile /> : <Navigate to='/login' />} />
+          <Route path='/editprofile' element={auth ? <EditProfile /> : <Navigate to='/login' />} />
           <Route path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
           <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/' />} />
         </Routes>
