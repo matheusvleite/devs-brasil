@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IRegisterUser } from "../interfaces/User";
+import { ILogin, IRegisterUser } from "../interfaces/User";
 import { api } from "../utils/config";
 
 
@@ -13,11 +13,28 @@ const register = async (data: IRegisterUser) => {
         if (res._id) {
             localStorage.setItem("user", JSON.stringify(res))
         }
-        return res.response.data;
+        return res;
     } catch (error) {
         console.log(error)
     }
 };
+
+const login = async (data: ILogin) => {
+    
+    try {
+        const res = await axios.post(api + '/users/login', data)
+        .then(res => res.data)
+        .catch(err => err)
+        
+        if(res._id) {
+            localStorage.setItem("user", JSON.stringify(res))
+        }
+
+        return res;
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 const logout = () => {
     localStorage.removeItem("user");
@@ -26,6 +43,7 @@ const logout = () => {
 const authService = {
     register,
     logout,
+    login,
 }
 
 export default authService;
