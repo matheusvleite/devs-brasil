@@ -32,7 +32,7 @@ const Profile = () => {
             <div className={styles.infos}>
               <h1>{user.name}</h1>
               <span>{user.email}</span>
-              <p>{user.bio}</p>
+              <p>{user.area}</p>
             </div>
           </div>
           <div className={styles.bio}>

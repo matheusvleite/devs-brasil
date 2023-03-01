@@ -12,6 +12,7 @@ const EditProfile = () => {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState<string | undefined>('');
+  const [area, setArea] = useState('');
   const [profileImage, setProfileImage] = useState('');
   const [bio, setBio] = useState('');
   const [previewImage, setPreviewImage] = useState();
@@ -25,6 +26,7 @@ const EditProfile = () => {
       setName(user.name)
       setEmail(user.email)
       setBio(user.bio)
+      setArea(user.area)
     }
   }, [user])
 
@@ -35,6 +37,7 @@ const EditProfile = () => {
       name,
       bio,
       profileImage,
+      area
     }
 
     if (profileImage) {
@@ -45,9 +48,14 @@ const EditProfile = () => {
       data.bio = bio;
     }
 
+    if(area) {
+      data.area = area
+    }
+
     const formData = new FormData()
     formData.append("name", name)
     formData.append("bio", bio)
+    formData.append("area", area)
     formData.append("profileImage", profileImage)
 
 
@@ -93,7 +101,7 @@ const EditProfile = () => {
             </label>
             <label>
               <span>Área de atuação:</span>
-              <input type="text" value={bio} onChange={e => setBio(e.target.value)} />
+              <input type="text" value={area} onChange={e => setArea(e.target.value)} />
             </label>
             <label>
               <span>Bio:</span>

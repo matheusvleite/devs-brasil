@@ -15,5 +15,6 @@ export interface IUser {
     name: string,
     profileImage: string,
     bio: string,
-    email?: string
+    email?: string,
+    area: string
 }
