@@ -12,10 +12,8 @@ export interface ILogin {
 }
 
 export interface IUser {
-    _id: string
     name: string,
-    email: string,
     profileImage: string,
     bio: string,
-    stars: []
+    email?: string
 }

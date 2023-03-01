@@ -1,18 +1,25 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Message from "../../components/Message/Message";
+import { resetComponentMessage } from "../../hooks/useResetMessage";
+import { profile, resetMessage, updateProfile } from "../../slices/userSlice";
 import { AppDispatch, RootState } from "../../store";
 import { upload } from "../../utils/config";
 import styles from './EditProfile.module.css';
 
 const EditProfile = () => {
-  const dispath = useDispatch<AppDispatch>();
-  const { user, loading } = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch<AppDispatch>();
+  const { user, loading, message } = useSelector((state: RootState) => state.user);
 
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState<string | undefined>('');
   const [profileImage, setProfileImage] = useState('');
   const [bio, setBio] = useState('');
   const [previewImage, setPreviewImage] = useState();
+
+  useEffect(() => {
+    dispatch(profile())
+  }, [dispatch]);
 
   useEffect(() => {
     if (user) {
@@ -21,6 +28,37 @@ const EditProfile = () => {
       setBio(user.bio)
     }
   }, [user])
+
+  const handleEdit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data = {
+      name,
+      bio,
+      profileImage
+    }
+
+    if (profileImage) {
+      data.profileImage = profileImage;
+    }
+
+    if (bio) {
+      data.bio = bio;
+    }
+
+    dispatch(updateProfile(data))
+
+    setTimeout(() => {
+      dispatch(resetMessage());
+  }, 2000);
+
+  }
+
+  const handleFile = (e: any) => {
+    const image = e.target.files[0]
+    setPreviewImage(image)
+    setProfileImage(image)
+  }
 
 
   if (loading) {
@@ -35,7 +73,7 @@ const EditProfile = () => {
           {(user.profileImage || previewImage) && (
             <img src={previewImage ? URL.createObjectURL(previewImage) : `${upload}/users/${user.profileImage}`} alt={user.name} />
           )}
-          <form>
+          <form onSubmit={handleEdit}>
             <label>
               <span>Nome:</span>
               <input type="text" value={name} onChange={e => setName(e.target.value)} />
@@ -43,6 +81,10 @@ const EditProfile = () => {
             <label>
               <span>Email:</span>
               <input type="text" value={email} disabled />
+            </label>
+            <label>
+              <span>Foto:</span>
+              <input type="file" onChange={handleFile} />
             </label>
             <label>
               <span>Área de atuação:</span>
@@ -54,9 +96,9 @@ const EditProfile = () => {
             </label>
             <input type="submit" value="Atualizar" />
           </form>
+          {message && <Message type="success" message={message} />}
         </>
       )}
-
     </div>
   )
 }

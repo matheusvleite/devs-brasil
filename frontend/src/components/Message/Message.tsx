@@ -6,7 +6,7 @@ interface Props {
 
 const Message = ({type, message}: Props) => {
   return (
-    <div className={`${type}`}>
+    <div className={`message ${type}`}>
         <p>{message}</p>
     </div>
   )
