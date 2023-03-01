@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
     email: String,
     password: String,
     profileImage: { type: String, default: "userdevprofile.png" },
+    area: String,
     bio: String,
     stars: Array
 }, {

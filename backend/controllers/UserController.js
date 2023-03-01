@@ -61,7 +61,6 @@ export const login = async (req, res) => {
 
         res.status(201).json({
             _id: user._id,
-            profileImage: user.profileImage,
             token: generateToken(user._id)
         })
     } catch (error) {
