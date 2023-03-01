@@ -1,5 +1,4 @@
 import axios from "axios";
-import { IUser } from "../interfaces/User";
 import { api } from "../utils/config";
 
 const profile = async (token: string) => {
@@ -32,7 +31,7 @@ const userDetails = async (id: string) => {
     }
 }
 
-const updateProfile = async (data: IUser, token: string) => {
+const updateProfile = async (data: FormData, token: string) => {
 
     try {
         const res = await axios.put(api + '/users/', data, {

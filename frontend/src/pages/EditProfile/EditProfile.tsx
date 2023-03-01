@@ -1,7 +1,6 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message/Message";
-import { resetComponentMessage } from "../../hooks/useResetMessage";
 import { profile, resetMessage, updateProfile } from "../../slices/userSlice";
 import { AppDispatch, RootState } from "../../store";
 import { upload } from "../../utils/config";
@@ -35,7 +34,7 @@ const EditProfile = () => {
     const data = {
       name,
       bio,
-      profileImage
+      profileImage,
     }
 
     if (profileImage) {
@@ -46,11 +45,17 @@ const EditProfile = () => {
       data.bio = bio;
     }
 
-    dispatch(updateProfile(data))
+    const formData = new FormData()
+    formData.append("name", name)
+    formData.append("bio", bio)
+    formData.append("profileImage", profileImage)
+
+
+    dispatch(updateProfile(formData))
 
     setTimeout(() => {
       dispatch(resetMessage());
-  }, 2000);
+    }, 2000);
 
   }
 

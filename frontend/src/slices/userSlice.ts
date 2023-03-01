@@ -42,7 +42,7 @@ export const userDetails = createAsyncThunk(
 
 export const updateProfile = createAsyncThunk(
     "user/update",
-    async (user: IUser, thunkAPI: any) => {
+    async (user: FormData, thunkAPI: any) => {
         const token = thunkAPI.getState().auth.user.token
         const data = await userService.updateProfile(user, token)
 
