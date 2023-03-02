@@ -1,0 +1,50 @@
+.search {
+    width: 100%;
+    height: 50vh;
+}
+
+.searchContent {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 0 2rem;
+    flex-direction: column;
+    background-image: url(../../assets/pexels-christina-morillo-1181275.jpg);
+}
+
+.searchHeader {
+    background-color: #ffffff9f;
+    padding: 1.5rem;
+}
+
+.searchHeader h2 {
+    font-size: 2rem;
+    font-weight: 900;
+}
+
+.searchHeader p {
+    font-size: 1.5rem;
+    margin-top: .8rem;
+}
+
+.searchHeader form {
+    display: flex;
+    flex-direction: initial;
+    align-items: center;
+    margin-top: 1rem;
+    gap: .8rem;
+    width: 100%;
+}
+
+.searchHeader form input {
+    margin-bottom: 0;
+    width: 65%;
+    border-radius: 8px;
+}
+
+.searchHeader form input[type="submit"] {
+    margin: 0;
+    width: 35%;
+}
