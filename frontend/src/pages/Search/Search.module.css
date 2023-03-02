@@ -1,0 +1,8 @@
+.search {
+    text-align: center;
+    color: var(--DEFAULT);
+}
+
+.search h2 {
+    font-size: 2rem;
+}
