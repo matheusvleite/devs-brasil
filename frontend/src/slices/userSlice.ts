@@ -1,8 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../interfaces/User";
 import userService from "../services/userService";
 
 interface InitialState {
+    users: IUser[]
     user: IUser | null,
     error: boolean,
     success: boolean,
@@ -11,6 +12,7 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
+    users: [],
     user: null,
     error: false,
     success: false,
@@ -49,6 +51,15 @@ export const updateProfile = createAsyncThunk(
         if (data.errors) {
             return thunkAPI.rejectWithValue(data.errors[0])
         }
+
+        return data;
+    }
+)
+
+export const searchUser = createAsyncThunk(
+    "user/search",
+    async (query: string, thunkAPI) => {
+        const data = await userService.searchUser(query);
 
         return data;
     }
@@ -95,6 +106,14 @@ export const userSlice = createSlice({
                 state.success = true;
                 state.error = false;
                 state.user = action.payload;
+            }).addCase(searchUser.pending, (state) => {
+                state.loading = true;
+                state.error = false
+            }).addCase(searchUser.fulfilled, (state, action: PayloadAction<IUser[], string>) => {
+                state.loading = false;
+                state.success = true;
+                state.error = false;
+                state.users = action.payload;
             })
     }
 });

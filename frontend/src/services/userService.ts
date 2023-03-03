@@ -48,10 +48,23 @@ const updateProfile = async (data: FormData, token: string) => {
     }
 }
 
+const searchUser = async (query: string) => {
+    try {
+        const res = await axios.get(api + '/users/search?q=' + query)
+        .then((res => res.data))
+        .catch(err => err)
+
+        return res
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const userService = {
     profile,
     userDetails,
     updateProfile,
+    searchUser,
 }
 
 export default userService;
