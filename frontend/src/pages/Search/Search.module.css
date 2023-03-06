@@ -1,0 +1,34 @@
+.search {
+    color: var(--DEFAULT);
+    padding: 1rem;
+}
+
+.search h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.searchResults {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 2rem;
+    border-bottom: 1px solid var(--BORDER);
+}
+
+.searchResults img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+}
+
+.searchResults p {
+    margin-bottom: 1rem;
+}
+
+.searchResults a {
+    text-decoration: none;
+    color: var(--LINK);
+    font-weight: 900;
+}

@@ -1,9 +1,12 @@
+import Profiles from "../../components/Profiles/Profiles";
+import Search from "../../components/Search/Search";
 
 const Home = () => {
   return (
-    <div>
-        <h2>Home</h2>
-    </div>
+    <main>
+      <Search />
+      <Profiles />
+    </main>
   )
 }
 

@@ -12,6 +12,7 @@ export interface ILogin {
 }
 
 export interface IUser {
+    _id: string
     name: string,
     profileImage: string,
     bio: string,
