@@ -1,10 +1,45 @@
 .profiles {
-    margin-top: 2rem;
-    padding: 0 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
 }
 
-.profiles h2 {
-    font-size: 1.5rem;
+.profileItem {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    border: 1px solid var(--BORDER);
+    border-radius: 5px;
+    padding: 1rem;
+    width: 250px;
+    cursor: pointer;
+}
+
+.profileItem:hover {
+    box-shadow: 1px 1px 4px 1px var(--DEFAULT);
+}
+
+.profileItem img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.profileItem p {
+    color: var(--DEFAULT);
+}
+
+.profileItem h2 {
+    font-size: 1.2rem;
     font-weight: bold;
     color: var(--DEFAULT);
+}
+
+.profileItem a {
+    text-decoration: none;
+    color: var(--LINK);
+}
+
+.profileItem div {
+    margin-left: 1rem;
 }

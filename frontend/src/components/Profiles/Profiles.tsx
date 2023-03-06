@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { getUsers } from '../../slices/userSlice';
 import { AppDispatch, RootState } from '../../store';
 import { upload } from '../../utils/config';
 import styles from './Profiles.module.css';
 
 const Profiles = () => {
+
+    const navigate = useNavigate()
 
     const dispatch = useDispatch<AppDispatch>();
     const { loading, users } = useSelector((state: RootState) => state.user)
@@ -21,14 +23,12 @@ const Profiles = () => {
 
     return (
         <div className={styles.profiles}>
-            <h2>Perfis criados recentementes</h2>
             {users && users.map(user => (
-                <div key={user._id}>
+                <div key={user._id} className={styles.profileItem} onClick={() => navigate(`/profile/${user._id}`)}>
                     <img src={`${upload}/users/${user.profileImage}`} alt="" />
                     <div>
                         <p>{user.area}</p>
                         <h2>{user.name}</h2>
-                        <Link to={`/profile/${user._id}`}>Ver mais</Link>
                     </div>
                 </div>
             ))}
