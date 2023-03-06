@@ -51,10 +51,22 @@ const updateProfile = async (data: FormData, token: string) => {
 const searchUser = async (query: string) => {
     try {
         const res = await axios.get(api + '/users/search?q=' + query)
-        .then((res => res.data))
+        .then(res => res.data)
         .catch(err => err)
 
         return res
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getUsers = async () => {
+    try {
+        const res = await axios.get(api + '/users/')
+        .then(res => res.data)
+        .then(err => err)
+
+        return res;
     } catch (error) {
         console.log(error)
     }
@@ -65,6 +77,7 @@ const userService = {
     userDetails,
     updateProfile,
     searchUser,
+    getUsers,
 }
 
 export default userService;

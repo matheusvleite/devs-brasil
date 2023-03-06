@@ -65,6 +65,15 @@ export const searchUser = createAsyncThunk(
     }
 )
 
+export const getUsers = createAsyncThunk(
+    "user/users",
+    async() => {
+        const data = await userService.getUsers();
+
+        return data;
+    }
+)
+
 
 export const userSlice = createSlice({
     name: "user",
@@ -110,6 +119,14 @@ export const userSlice = createSlice({
                 state.loading = true;
                 state.error = false
             }).addCase(searchUser.fulfilled, (state, action: PayloadAction<IUser[], string>) => {
+                state.loading = false;
+                state.success = true;
+                state.error = false;
+                state.users = action.payload;
+            }).addCase(getUsers.pending, (state) => {
+                state.loading = true;
+                state.error = false
+            }).addCase(getUsers.fulfilled, (state, action: PayloadAction<IUser[]>) => {
                 state.loading = false;
                 state.success = true;
                 state.error = false;

@@ -21,8 +21,6 @@ const Search = () => {
     }
   }, [dispatch, query])
 
-  console.log(users)
-
   if (loading) {
     return <p>Carregando...</p>
   }
