@@ -61,7 +61,6 @@ export const login = async (req, res) => {
 
         res.status(201).json({
             _id: user._id,
-            profileImage: user.profileImage,
             token: generateToken(user._id)
         })
     } catch (error) {
@@ -78,7 +77,7 @@ export const getCurrentUser = async (req, res) => {
 }
 
 export const getAllUsers = async (req, res) => {
-    const users = await User.find({}).select("-password").sort([["createdAt", -1]]).exec();
+    const users = (await User.find({}).select("-password").sort([["createdAt", 1]]).exec()).slice(5);
 
     return res.status(200).json(users);
 }
