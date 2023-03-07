@@ -186,10 +186,3 @@ input:disabled {
 .message.success {
     background-color: var(--BG-INPUT);
 }
-
-.title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--DEFAULT);
-    margin: 1rem 1rem;
-}

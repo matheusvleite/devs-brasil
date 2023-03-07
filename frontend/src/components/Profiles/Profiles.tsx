@@ -22,16 +22,19 @@ const Profiles = () => {
     }
 
     return (
-        <div className={styles.profiles}>
-            {users && users.map(user => (
-                <div key={user._id} className={styles.profileItem} onClick={() => navigate(`/profile/${user._id}`)}>
-                    <img src={`${upload}/users/${user.profileImage}`} alt="" />
-                    <div>
-                        <p>{user.area}</p>
-                        <h2>{user.name}</h2>
-                    </div>
-                </div>
-            ))}
+        <div className={styles.profilesContainer}>
+            <h2>Perfis criados recentemente no Devs Brasil</h2>
+            <div className={styles.profiles}>
+                {users && users.map(user => (
+                    <article key={user._id} className={styles.profileItem} onClick={() => navigate(`/profile/${user._id}`)}>
+                        <img src={`${upload}/users/${user.profileImage}`} alt="" />
+                        <div>
+                            <p>{user.area}</p>
+                            <h2>{user.name}</h2>
+                        </div>
+                    </article>
+                ))}
+            </div>
         </div>
     )
 }
