@@ -77,7 +77,7 @@ export const getCurrentUser = async (req, res) => {
 }
 
 export const getAllUsers = async (req, res) => {
-    const users = (await User.find({}).select("-password").sort([["createdAt", 1]]).exec()).slice(0,5);
+    const users = (await User.find({}).select("-password").sort([["createdAt", -1]]).exec()).slice(0,5);
 
     return res.status(200).json(users);
 }
