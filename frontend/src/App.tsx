@@ -1,15 +1,15 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
+import { useAuth } from './hooks/useAuth';
+import EditProfile from './pages/EditProfile/EditProfile';
 import Home from './pages/Home/Home';
 import Login from './pages/Login/Login';
-import SignUp from './pages/SignUp/SignUp';
-import { useAuth } from './hooks/useAuth';
 import Profile from './pages/Profile/Profile';
-import EditProfile from './pages/EditProfile/EditProfile';
 import Search from './pages/Search/Search';
+import SignUp from './pages/SignUp/SignUp';
 
 const App = () => {
-const {auth} = useAuth();
+  const { auth } = useAuth();
 
   return (
     <div className="App">
@@ -17,11 +17,11 @@ const {auth} = useAuth();
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} />
-          <Route path='/profile/:id' element={auth ? <Profile /> : <Navigate to='/login' />} />
+          <Route path='/profile/:id' element={<Profile />} />
           <Route path='/search' element={auth ? <Search /> : <Navigate to='/login' />} />
           <Route path='/editprofile' element={auth ? <EditProfile /> : <Navigate to='/login' />} />
           <Route path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
-          <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/' />} />
+          <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/editprofile' />} />
         </Routes>
       </BrowserRouter>
     </div>
