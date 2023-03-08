@@ -118,7 +118,8 @@ label span {
 }
 
 input,
-textarea {
+textarea,
+select {
     color: var(--PLACEHOLDER);
     border-radius: 2px;
     border: none;

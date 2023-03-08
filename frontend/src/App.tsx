@@ -21,7 +21,7 @@ const {auth} = useAuth();
           <Route path='/search' element={auth ? <Search /> : <Navigate to='/login' />} />
           <Route path='/editprofile' element={auth ? <EditProfile /> : <Navigate to='/login' />} />
           <Route path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
-          <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/' />} />
+          <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/editprofile' />} />
         </Routes>
       </BrowserRouter>
     </div>

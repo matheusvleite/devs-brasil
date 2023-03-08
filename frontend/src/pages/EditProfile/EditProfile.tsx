@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message/Message";
 import { profile, resetMessage, updateProfile } from "../../slices/userSlice";
@@ -13,9 +13,9 @@ const EditProfile = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState<string | undefined>('');
   const [area, setArea] = useState('');
-  const [profileImage, setProfileImage] = useState('');
+  const [profileImage, setProfileImage] = useState<File>();
   const [bio, setBio] = useState('');
-  const [previewImage, setPreviewImage] = useState();
+  const [previewImage, setPreviewImage] = useState<File>();
 
   useEffect(() => {
     dispatch(profile())
@@ -40,24 +40,23 @@ const EditProfile = () => {
       area
     }
 
+    const formData = new FormData()
+    formData.append("name", name)
+
     if (profileImage) {
       data.profileImage = profileImage;
+      formData.append("profileImage", profileImage)
+    }
+
+    if (area) {
+      data.area = area
+      formData.append("area", area)
     }
 
     if (bio) {
       data.bio = bio;
+      formData.append("bio", bio)
     }
-
-    if(area) {
-      data.area = area
-    }
-
-    const formData = new FormData()
-    formData.append("name", name)
-    formData.append("bio", bio)
-    formData.append("area", area)
-    formData.append("profileImage", profileImage)
-
 
     dispatch(updateProfile(formData))
 
@@ -67,12 +66,13 @@ const EditProfile = () => {
 
   }
 
-  const handleFile = (e: any) => {
-    const image = e.target.files[0]
-    setPreviewImage(image)
-    setProfileImage(image)
+  const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
+    if(e.target.files) {
+      const image = e.target.files[0]
+      setPreviewImage(image)
+      setProfileImage(image)
+    }
   }
-
 
   if (loading) {
     return <p>Carregando...</p>
@@ -89,11 +89,11 @@ const EditProfile = () => {
           <form onSubmit={handleEdit}>
             <label>
               <span>Nome:</span>
-              <input type="text" value={name} onChange={e => setName(e.target.value)} />
+              <input type="text" value={name || ''} onChange={e => setName(e.target.value)} />
             </label>
             <label>
               <span>Email:</span>
-              <input type="text" value={email} disabled />
+              <input type="text" value={email || ''} disabled />
             </label>
             <label>
               <span>Foto:</span>
@@ -101,11 +101,16 @@ const EditProfile = () => {
             </label>
             <label>
               <span>Área de atuação:</span>
-              <input type="text" value={area} onChange={e => setArea(e.target.value)} />
+              <select name="area" value={area} onChange={e => setArea(e.target.value)}>
+                <option value="">Selecione</option>
+                <option value="Frontend">Frontend</option>
+                <option value="Backend">Backend</option>
+                <option value="Mobile">Mobile</option>
+              </select>
             </label>
             <label>
               <span>Bio:</span>
-              <textarea value={bio} onChange={e => setBio(e.target.value)}></textarea>
+              <textarea value={bio || ''} onChange={e => setBio(e.target.value)}></textarea>
             </label>
             <input type="submit" value="Atualizar" />
           </form>
