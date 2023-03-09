@@ -174,7 +174,7 @@ export const starUser = async (req, res) => {
 export const searchUsers = async (req, res) => {
     const { q } = req.query;
 
-    const users = await User.find({name: new RegExp(q, "i")}).exec();
+    const users = await User.find({"$or": [{name: new RegExp(q, "i")}, {area: new RegExp(q, "i")}]}).exec();
 
     res.status(200).json(users);
 };
