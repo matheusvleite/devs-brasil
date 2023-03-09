@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Message from "../../components/Message/Message";
 import { profile, resetMessage, updateProfile } from "../../slices/userSlice";
 import { AppDispatch, RootState } from "../../store";
+import { areas } from "../../utils/area";
 import { upload } from "../../utils/config";
 import styles from './EditProfile.module.css';
 
@@ -103,9 +104,9 @@ const EditProfile = () => {
               <span>Área de atuação:</span>
               <select name="area" value={area} onChange={e => setArea(e.target.value)}>
                 <option value="">Selecione</option>
-                <option value="Frontend">Frontend</option>
-                <option value="Backend">Backend</option>
-                <option value="Mobile">Mobile</option>
+                {areas.map(area => (
+                  <option value={area.name} key={area.id}>{area.name}</option>
+                ))}
               </select>
             </label>
             <label>
