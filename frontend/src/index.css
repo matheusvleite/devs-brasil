@@ -59,6 +59,7 @@ table {
     --LINK: #039417;
     --PLACEHOLDER: #FFF;
     --BG-INPUT: #039417;
+    --HOVER: #00000011;
 }
 
 [data-theme='dark'] {
@@ -71,6 +72,7 @@ table {
     --LINK: #039417;
     --PLACEHOLDER: #FFF;
     --BG-INPUT: #039417;
+    --HOVER: #ffffff11;
 }
 
 body {

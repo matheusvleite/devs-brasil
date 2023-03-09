@@ -1,0 +1,38 @@
+.areas {
+    padding: 0 1.5rem;
+    margin-top: 1rem;
+    box-sizing: border-box;
+}
+
+.areas h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--DEFAULT);
+}
+
+.areas ul {
+    border: 1px solid var(--BORDER);
+    border-radius: 5px;
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+}
+
+.areas ul li {
+    padding: 1rem;
+    border: 1px solid var(--BORDER);
+    border-radius: 5px;
+    transition: .5s;
+}
+
+.areas ul li:hover {
+    background-color: var(--HOVER);
+}
+
+.areas ul li a {
+    text-decoration: none;
+    color: var(--DEFAULT);
+}
