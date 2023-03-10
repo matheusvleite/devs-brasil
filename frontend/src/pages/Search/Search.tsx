@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useSearchParams } from "react-router-dom";
-import { IUser } from "../../interfaces/User";
+import Loading from "../../components/Loading/Loading";
 import { searchUser } from "../../slices/userSlice";
 import { AppDispatch, RootState } from "../../store";
 import { upload } from "../../utils/config";
@@ -22,7 +22,7 @@ const Search = () => {
   }, [dispatch, query])
 
   if (loading) {
-    return <p>Carregando...</p>
+    return <Loading />
   }
 
   return (
@@ -32,7 +32,7 @@ const Search = () => {
         <div key={user._id} className={styles.searchResults}>
           <img src={`${upload}/users/${user.profileImage}`} alt={user.name} />
           <div><p>{user.name} - {user.area}</p>
-          <Link to={`/profile/${user._id}`}>Ver mais</Link>
+            <Link to={`/profile/${user._id}`}>Ver mais</Link>
           </div>
         </div>
       ))}

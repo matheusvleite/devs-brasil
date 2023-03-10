@@ -1,5 +1,6 @@
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Loading from "../../components/Loading/Loading";
 import Message from "../../components/Message/Message";
 import { profile, resetMessage, updateProfile } from "../../slices/userSlice";
 import { AppDispatch, RootState } from "../../store";
@@ -76,7 +77,7 @@ const EditProfile = () => {
   }
 
   if (loading) {
-    return <p>Carregando...</p>
+    return <Loading />
   }
 
   return (

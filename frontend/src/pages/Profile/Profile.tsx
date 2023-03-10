@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import Loading from "../../components/Loading/Loading";
 import { userDetails } from "../../slices/userSlice";
 import { AppDispatch, RootState } from "../../store";
 import { upload } from "../../utils/config";
@@ -21,7 +22,7 @@ const Profile = () => {
 
 
   if (loading) {
-    return <p>Carregando...</p>
+    return <Loading />
   }
   return (
     <div className={styles.profile}>

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { getUsers } from '../../slices/userSlice';
 import { AppDispatch, RootState } from '../../store';
 import { upload } from '../../utils/config';
+import Loading from '../Loading/Loading';
 import styles from './Profiles.module.css';
 
 const Profiles = () => {
@@ -18,7 +19,7 @@ const Profiles = () => {
     }, [dispatch])
 
     if (loading) {
-        return <p>Carregando...</p>
+        return <Loading />
     }
 
     return (
