@@ -29,6 +29,10 @@
     color: var(--DEFAULT);
 }
 
+.infos svg {
+    color: yellow;
+}
+
 .bio {
     margin-top: 2rem;
     border: 1px solid var(--BORDER);

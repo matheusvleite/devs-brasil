@@ -6,6 +6,7 @@ import { userDetails } from "../../slices/userSlice";
 import { AppDispatch, RootState } from "../../store";
 import { upload } from "../../utils/config";
 import styles from './Profile.module.css';
+import { BsFillStarFill } from "react-icons/bs";
 
 const Profile = () => {
 
@@ -34,6 +35,7 @@ const Profile = () => {
               <h1>{user.name}</h1>
               <span>{user.email}</span>
               <p>{user.area}</p>
+              {user.stars && user.stars.length}<BsFillStarFill />
             </div>
           </div>
           <div className={styles.bio}>
