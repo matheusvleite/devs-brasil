@@ -12,15 +12,16 @@ import styles from './Profiles.module.css';
 const Profiles = () => {
     const { auth } = useAuth()
     const dispatch = useDispatch<AppDispatch>();
-    const { loading, users, message, user: userAuth } = useSelector((state: RootState) => state.user)
+    const { loading, users, message } = useSelector((state: RootState) => state.user)
+    const { user: userAuth } = useSelector((state: RootState) => state.auth)
     const navigate = useNavigate()
 
-    
+
     useEffect(() => {
         dispatch(getUsers())
         dispatch(profile())
     }, [dispatch])
-    
+
     const handleStar = (id: string) => {
         if (!auth) {
             navigate('/login')
@@ -34,11 +35,9 @@ const Profiles = () => {
         return <Loading />
     }
 
-
     return (
         <div className={styles.profilesContainer}>
             <h2>Perfis criados recentemente no Devs Brasil</h2>
-            <button onClick={() => console.log(userAuth)}>Teste</button>
             <div className={styles.profiles}>
                 {users && users.map(user => (
                     <article key={user._id} className={styles.profileItem}>
@@ -46,9 +45,9 @@ const Profiles = () => {
                         <div>
                             <p>{user.area}</p>
                             <h2>{user.name}</h2>
-                            <Link to={`/profile/${user._id}`}>Ver mais</Link>
+                            <Link to={`/profile/${user._id}/${user.name}`}>Ver mais</Link>
                         </div>
-                        {userAuth && user.stars.includes(userAuth._id) ?
+                        {userAuth && user.stars.includes(String(userAuth._id)) ?
                             <BsFillStarFill className={styles.starOn} onClick={() => handleStar(user._id)} /> :
                             <BsFillStarFill className={styles.starOff} title="Dê estrela." onClick={() => handleStar(user._id)} />}
                     </article>
