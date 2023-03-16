@@ -45,7 +45,7 @@ const Profiles = () => {
                         <div>
                             <p>{user.area}</p>
                             <h2>{user.name}</h2>
-                            <Link to={`/profile/${user._id}/${user.name}`}>Ver mais</Link>
+                            <Link to={`/profile/${user._id}`}>Ver mais</Link>
                         </div>
                         {userAuth && user.stars.includes(String(userAuth._id)) ?
                             <BsFillStarFill className={styles.starOn} onClick={() => handleStar(user._id)} /> :
