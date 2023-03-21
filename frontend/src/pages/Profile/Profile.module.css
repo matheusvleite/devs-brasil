@@ -29,6 +29,28 @@
     color: var(--DEFAULT);
 }
 
+
+.star {
+    display: flex;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.star svg {
+    color: yellow;
+}
+
+.star button {
+    margin-left: .5rem;
+    background: transparent;
+    border: 1px solid var(--BORDER);
+    border-radius: 5px;
+    padding: .5rem;
+    color: var(--DEFAULT);
+    font-weight: bold;
+    cursor: pointer;
+}
+
 .bio {
     margin-top: 2rem;
     border: 1px solid var(--BORDER);
@@ -43,4 +65,3 @@
 .bio p {
     word-wrap: break-word;
 }
-

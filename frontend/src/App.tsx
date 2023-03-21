@@ -1,4 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
 import Navbar from './components/Navbar/Navbar';
 import { useAuth } from './hooks/useAuth';
 import EditProfile from './pages/EditProfile/EditProfile';
@@ -15,14 +16,17 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/profile/:id' element={<Profile />} />
-          <Route path='/search' element={<Search />} />
-          <Route path='/editprofile' element={auth ? <EditProfile /> : <Navigate to='/login' />} />
-          <Route path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
-          <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/editprofile' />} />
-        </Routes>
+        <main>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/profile/:id' element={<Profile />} />
+            <Route path='/search' element={<Search />} />
+            <Route path='/editprofile' element={auth ? <EditProfile /> : <Navigate to='/login' />} />
+            <Route path='/login' element={!auth ? <Login /> : <Navigate to='/' />} />
+            <Route path='/signup' element={!auth ? <SignUp /> : <Navigate to='/editprofile' />} />
+          </Routes>
+        </main>
+        <Footer />
       </BrowserRouter>
     </div>
   )

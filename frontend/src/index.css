@@ -189,3 +189,16 @@ input:disabled {
 .message.success {
     background-color: var(--BG-INPUT);
 }
+
+main {
+    min-height: 80vh;
+}
+
+footer {
+    text-align: center;
+    color: var(--DEFAULT);
+    border: 1px solid var(--BORDER);
+    border-radius: 5px;
+    margin: 1.5rem 1.5rem .5rem;
+    padding: 2rem 0;
+}

@@ -67,8 +67,22 @@ export const searchUser = createAsyncThunk(
 
 export const getUsers = createAsyncThunk(
     "user/users",
-    async() => {
+    async () => {
         const data = await userService.getUsers();
+
+        return data;
+    }
+)
+
+export const starAnUser = createAsyncThunk(
+    "user/star",
+    async (id: string, thunkAPI: any) => {
+        const token = thunkAPI.getState().auth.user.token
+        const data = await userService.starAnUser(id, token);
+
+        if (data.code) {
+            return thunkAPI.rejectWithValue(data.response.data.errors[0])
+        }
 
         return data;
     }
@@ -131,6 +145,25 @@ export const userSlice = createSlice({
                 state.success = true;
                 state.error = false;
                 state.users = action.payload;
+            }).addCase(starAnUser.fulfilled, (state, action) => {
+                state.loading = false;
+                state.success = true;
+                state.error = false;
+                if(state.user?.stars) {
+                    state.user.stars.push(action.payload.userId)
+                }
+
+                state.users.map(user => {
+                    if (user._id === action.payload.user) {
+                        return user.stars.push(action.payload.userId)
+                    }
+                    return user;
+                })
+            }).addCase(starAnUser.rejected, (state, action: any) => {
+                state.loading = false;
+                state.error = true;
+                state.message = action.payload;
+                state.user = null;
             })
     }
 });

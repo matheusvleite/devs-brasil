@@ -4,7 +4,7 @@ import { BsLightbulbFill, BsLightbulbOffFill } from "react-icons/bs";
 import { useState } from 'react';
 import {useAuth} from '../../hooks/useAuth';
 import {useDispatch, useSelector} from 'react-redux';
-import { logout } from '../../slices/authSlice';
+import { logout, reset } from '../../slices/authSlice';
 import { AppDispatch, RootState } from '../../store';
 
 const Navbar = () => {
@@ -16,6 +16,7 @@ const Navbar = () => {
 
     const handleLogout = () => {
         dispatch(logout());
+        dispatch(reset())
     }
 
     const handleTheme = () => {

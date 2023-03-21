@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from '../../store';
 import { login, reset } from '../../slices/authSlice';
 import Message from '../../components/Message/Message';
 import { resetComponentMessage } from '../../hooks/useResetMessage';
+import Loading from '../../components/Loading/Loading';
 
 const Login = () => {
   const [email,setEmail] = useState('');
@@ -43,7 +44,7 @@ const Login = () => {
             <span>Senha:</span>
             <input type="password" placeholder='Senha' value={password} onChange={e => setPassword(e.target.value)}/>
           </label>
-          {loading && <input type="submit" value="Carregando..." disabled/> }
+          {loading && <Loading /> }
           {!loading && <input type="submit" value="Entrar" /> }
         </form>
         {error && <Message type='error' message={message} />}
