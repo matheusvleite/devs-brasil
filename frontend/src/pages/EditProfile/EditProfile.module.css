@@ -1,7 +1,13 @@
 .editProfile {
-    width: 50%;
-    margin: 0 auto;
+    margin: 1.5rem 1.5rem 0.5rem;
     text-align: center;
+}
+
+@media screen and (min-width: 769px) {
+    .editProfile {
+        width: 50%;
+        margin: 0 auto;
+    }
 }
 
 .editProfile h1 {

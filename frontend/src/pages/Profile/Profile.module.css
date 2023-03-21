@@ -1,16 +1,31 @@
 .profile {
-    width: 50%;
-    margin: 0 auto;
+    margin: 1.5rem 1.5rem 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
+@media screen and (min-width: 769px) {
+    .profile {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
 .user {
     display: flex;
     align-items: center;
     color: var(--DEFAULT);
+    flex-direction: column;
+    text-align: center;
+}
+
+@media screen and (min-width: 769px) { 
+    .user {
+        flex-direction: initial;
+        text-align: initial;
+    }
 }
 
 .profile img {
@@ -21,8 +36,14 @@
 }
 
 .infos {
-    margin-left: 1rem;
+    margin-top: 1rem;
 }
+
+@media screen and (min-width: 769px) {
+    .infos {
+        margin-left: 1rem;
+    }
+ }
 
 .infos h1 {
     font-size: 1.5rem;
@@ -34,6 +55,13 @@
     display: flex;
     align-items: center;
     margin-top: .5rem;
+    justify-content: center;
+}
+
+@media screen and (min-width: 769px) { 
+    .star {
+        justify-content: initial;
+    }
 }
 
 .star svg {
